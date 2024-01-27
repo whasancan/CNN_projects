@@ -13,7 +13,7 @@ Temel olarak, Cnn, sınıflandırma sorununun çözümü için standart Sinir A�
 ![cnn](https://github.com/whasancan/CNN_projects/blob/d60fbaf3d0fe8fd70ba9c01489e7ff66ea78c0ac/foto/cnnnnn.png)
 
 
-## Bu kütüphaneleri kullancağız.
+### Bu kütüphaneleri kullancağız.
 
 ```python 
 import tensorflow as tf
@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-## CIFAR-10 veri setini kullacağız demiştik, resimlerimizi indirelim, eğitim ve test verilerini ayrı ayrı değişkenlere atıyalım.
+### CIFAR-10 veri setini kullacağız demiştik, resimlerimizi indirelim, eğitim ve test verilerini ayrı ayrı değişkenlere atıyalım.
 
 ```python 
 # veri setini indirelim 60.000resim vardır
@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-## Verilerin piksel değerini 0-1 arasına sıkı8ştırarak normalize eder. Bu, genellikle piksel değerlerini daha küçük bir aralığa getirerek modelin daha iyi öğrenmesine yardımcı olabilir.
+### Verilerin piksel değerini 0-1 arasına sıkı8ştırarak normalize eder. Bu, genellikle piksel değerlerini daha küçük bir aralığa getirerek modelin daha iyi öğrenmesine yardımcı olabilir.
 
 ```python 
 #piksel değerini 0 ile 1 arasına sıkıştıralım
@@ -39,7 +39,7 @@ train_images, test_images = train_images / 255, test_images / 255
 ```
 
 
-## Eğitim veri setinden 25 görüntüyü ve bunların sınıf isimlerini çekerek görsel sonuç oluşturup gösterir.
+### Eğitim veri setinden 25 görüntüyü ve bunların sınıf isimlerini çekerek görsel sonuç oluşturup gösterir.
 
 ```python 
 # verileri doğrulamak için ilk 25 görüntüyü ve isimlerini çekelim
@@ -60,7 +60,7 @@ plt.show()
 ![örnek](https://github.com/whasancan/CNN_projects/blob/8613cba51a49b9e40016fc5cd9b43cb7335bbd22/foto/veri_resim.png)
 
 
-## Burada CNN modeli oluşturup Sequential modelini tanımlıyoruz. Model Conv2D ve MaxPooling2D katmanlarını içerir. Bu katmanlar, tipik bir evrişimli sinir ağı mimarisini oluşturur ve evrişim ve havuzlama (pooling) işlemleriyle özellik haritalarını çıkarır.
+### Burada CNN modeli oluşturup Sequential modelini tanımlıyoruz. Model Conv2D ve MaxPooling2D katmanlarını içerir. Bu katmanlar, tipik bir evrişimli sinir ağı mimarisini oluşturur ve evrişim ve havuzlama (pooling) işlemleriyle özellik haritalarını çıkarır.
 
 
 ```python 
@@ -89,12 +89,12 @@ model.add(layers.Conv2D(64, (3,3), activation= "relu"))
 print("Katmanlar oluşturuldu!")
 ```
 
-## Bu kısımı resim ile anlatmak gerekirse, mavili kısım burda kod olarak yaptığımız kısmın görsel halidir.
+### Bu kısımı resim ile anlatmak gerekirse, mavili kısım burda kod olarak yaptığımız kısmın görsel halidir.
 
 ![conv](https://github.com/whasancan/CNN_projects/blob/d60fbaf3d0fe8fd70ba9c01489e7ff66ea78c0ac/foto/conv_poolling.jpg)
 
 
-## Oluşturulan modelin mimarisini özetleyelim. Her katmandaki parametre sayısını ve toplam parametre sayısını gösterir.
+### Oluşturulan modelin mimarisini özetleyelim. Her katmandaki parametre sayısını ve toplam parametre sayısını gösterir.
 
 ```python 
 # modelimizin mimarisine bakalım
@@ -104,7 +104,7 @@ model.summary()
 ![özet1](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/ilk_summary.png)
 
 
-## Modelin sonuna yoğun katman ekler. Bu katman. önceki evrişimli katmanların çıkışlarını düzleştirir ve ardından tam bağlantılı(DENSE) katmamları ekler.
+### Modelin sonuna yoğun katman ekler. Bu katman. önceki evrişimli katmanların çıkışlarını düzleştirir ve ardından tam bağlantılı(DENSE) katmamları ekler.
 
 ```python 
 # Yoğuun katman oluşturlaım
@@ -119,12 +119,12 @@ model.add(layers.Dense(64, activation="relu"))
 model.add(layers.Dense(10))
 ```
 
-## Bu katmanın ne olduğunu birde görsel olarak görelim. Kırmızılı olan kısım Fully Connected(Yoğun Katamn)dır.
+### Bu katmanın ne olduğunu birde görsel olarak görelim. Kırmızılı olan kısım Fully Connected(Yoğun Katamn)dır.
 
 ![yoğun](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/yo%C4%9Fun%20katman.jpg)
 
 
-## Tam olark oluşturluan modelin mimarisi özetler ve bu özet bilgileri ekrana yazdırır. Modelin iç yapısını anlamak ve eğitilecek parametrelerin sayısını görmek için bu fonksiyonu kullanabiliriz.
+### Tam olark oluşturluan modelin mimarisi özetler ve bu özet bilgileri ekrana yazdırır. Modelin iç yapısını anlamak ve eğitilecek parametrelerin sayısını görmek için bu fonksiyonu kullanabiliriz.
 
 ```python 
 # modelimizin tam mimarisine bakalım
@@ -134,7 +134,7 @@ model.summary()
 ![özet2](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/2.summaray.png)
 
 
-## Bu kod bloğu, modeli derler (compile) ve eğitir (fit). Bu kod bloğu, modelin eğitim sürecini başlatır ve her epoch sonunda modelin performansını gözlemlemek için eğitim ve doğrulama veri setlerindeki kayıp ve doğruluk değerlerini kaydeder.
+### Bu kod bloğu, modeli derler (compile) ve eğitir (fit). Bu kod bloğu, modelin eğitim sürecini başlatır ve her epoch sonunda modelin performansını gözlemlemek için eğitim ve doğrulama veri setlerindeki kayıp ve doğruluk değerlerini kaydeder.
 
 ```python 
 # şimid modelimiz derleyelim(COMPİLE) ve eğitelim(FIT)
@@ -156,12 +156,12 @@ history = model.fit(train_images, train_labels, epochs=50,
 
 ```
 
-## eğitimi tamamladık
+### eğitimi tamamladık
 
 ![eğitim](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/e%C4%9Fitim_ft.png)
 
 
-## Modelin eğitim sürecinde elde edilen doğruluk değerlerini çizdirir ve daha sonra test veri seti üzerinde modelin kayıp (loss) ve doğruluk (accuracy) değerlerini değerlendirir.
+### Modelin eğitim sürecinde elde edilen doğruluk değerlerini çizdirir ve daha sonra test veri seti üzerinde modelin kayıp (loss) ve doğruluk (accuracy) değerlerini değerlendirir.
 
 ```python 
 # eğitim boyunca modelin doğruluk(ACCURACY) değerini çizdirir
@@ -186,7 +186,7 @@ test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 ![grafik](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/grafik.png)
 
 
-## Son olarak baaşrı oranına bakalım
+### Son olarak baaşrı oranına bakalım
 
 ```python 
 print(f"Test Accuracy: {test_acc * 100:.2f}%")
