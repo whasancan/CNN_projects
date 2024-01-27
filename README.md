@@ -156,7 +156,7 @@ history = model.fit(train_images, train_labels, epochs=50,
 
 ```
 
-### eğitimi tamamladık
+### Eğitimi tamamladık
 
 ![eğitim](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/e%C4%9Fitim_ft.png)
 
