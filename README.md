@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-### Verilerin piksel değerini 0-1 arasına sıkı8ştırarak normalize eder. Bu, genellikle piksel değerlerini daha küçük bir aralığa getirerek modelin daha iyi öğrenmesine yardımcı olabilir.
+### Verilerin piksel değerini 0-1 arasına sıkıştırarak normalize eder. Bu, genellikle piksel değerlerini daha küçük bir aralığa getirerek modelin daha iyi öğrenmesine yardımcı olabilir.
 
 ```python 
 #piksel değerini 0 ile 1 arasına sıkıştıralım
