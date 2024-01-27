@@ -92,5 +92,102 @@ print("Katmanlar oluşturuldu!")
 ![conv](https://github.com/whasancan/CNN_projects/blob/d60fbaf3d0fe8fd70ba9c01489e7ff66ea78c0ac/foto/conv_poolling.jpg)
 
 
+## Oluşturulan modelin mimarisini özetleyelim. Her katmandaki parametre sayısını ve toplam parametre sayısını gösterir.
+
+```python 
+# modelimizin mimarisine bakalım
+model.summary()
+```
+
+![özet1](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/ilk_summary.png)
 
 
+## Modelin sonuna yoğun katman ekler. Bu katman. önceki evrişimli katmanların çıkışlarını düzleştirir ve ardından tam bağlantılı(DENSE) katmamları ekler.
+
+```python 
+# Yoğuun katman oluşturlaım
+
+# bu katman yukarıdan gelen özellik haritasını düzleştirir. tek boyutlu vektöre dönüştürür.
+model.add(layers.Flatten())
+
+# düzenlenmiş veriyi alan 64 nöron içeren tam bağlantılı(DENSE) katmanı ekler. burada daha yüksek seviyeli özellikleri öğrenir
+model.add(layers.Dense(64, activation="relu"))
+
+# kullandığımız veri 10 çıkışlı olduğu için 10 çıktılı yoğun katman oluşturacağız
+model.add(layers.Dense(10))
+```
+
+## Bu katmanın ne olduğunu birde görsel olarak görelim. Kırmızılı olan kısım Fully Connected(Yoğun Katamn)dır.
+
+![yoğun](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/yo%C4%9Fun%20katman.jpg)
+
+
+## Tam olark oluşturluan modelin mimarisi özetler ve bu özet bilgileri ekrana yazdırır. Modelin iç yapısını anlamak ve eğitilecek parametrelerin sayısını görmek için bu fonksiyonu kullanabiliriz.
+
+```python 
+# modelimizin tam mimarisine bakalım
+model.summary()
+```
+
+![özet2](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/2.summaray.png)
+
+
+## Bu kod bloğu, modeli derler (compile) ve eğitir (fit). Bu kod bloğu, modelin eğitim sürecini başlatır ve her epoch sonunda modelin performansını gözlemlemek için eğitim ve doğrulama veri setlerindeki kayıp ve doğruluk değerlerini kaydeder.
+
+```python 
+# şimid modelimiz derleyelim(COMPİLE) ve eğitelim(FIT)
+
+
+# Adam, gradient descent optimizasyon algoritmasının geliştirilmiş bir versiyonudur.
+# kullanım amacı modelin performansını atrırarak daga hızlı öğrenmesini sağlamaktır.
+
+# kayıp fonksiyonunu belirliyoruz
+model.compile(optimizer="adam",
+             loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=["accuracy"])
+
+# train_images (GÖRÜNTÜLER) ve train_labels(GÖRÜNTÜLERİN İSİMLERİ) modelin eğitim verilerini temsil eder
+# epochs, modelin kaç epoch boyunca eğitileceğini belirler. bir epoch modeleni tüm eğitim verilerini birekz geçmesi anlamın gelir.
+# validation, modelin her epoch sonunda test veri seti üzerindfen performansı değerlendirmeye yarar
+history = model.fit(train_images, train_labels, epochs=50,
+                   validation_data=(test_images, test_labels))
+
+```
+
+## eğitimi tamamladık
+
+![eğitim](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/e%C4%9Fitim_ft.png)
+
+
+## Modelin eğitim sürecinde elde edilen doğruluk değerlerini çizdirir ve daha sonra test veri seti üzerinde modelin kayıp (loss) ve doğruluk (accuracy) değerlerini değerlendirir.
+
+```python 
+# eğitim boyunca modelin doğruluk(ACCURACY) değerini çizdirir
+# ve daha sonra test veri setinden modelin kayıp(LOSS) ve doğruluk değerini değerlendirir
+
+
+plt.plot(history.history['accuracy'], label='accuracy') # eher epoch'taki eğitim setinden elde edilen doğruluk değeri
+plt.plot(history.history['val_accuracy'], label = 'val_accuracy') # her epoc'taki doğrulama setinden elde edilen değruluk değeri
+
+# grafik ayarları:
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.ylim([0.5, 1])
+plt.legend(loc='lower right')
+plt.show()
+
+
+# modeli değerlendirme
+test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+```
+
+![grafik](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/grafik.png)
+
+
+## Son olarak baaşrı oranına bakalım
+
+```python 
+print(f"Test Accuracy: {test_acc * 100:.2f}%")
+```
+
+![başarı](https://github.com/whasancan/CNN_projects/blob/5ef7db0bf94d5e0b85f2ea0e0bb23bd8b187e750/foto/ba%C5%9Far%C4%B1_son.png)
