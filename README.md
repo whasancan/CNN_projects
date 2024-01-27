@@ -2,9 +2,11 @@
 
 CIFAR-10 veri setini kullanarak 60.00 görsel alacağız bu görsellerle CNN modeli eğiteceğiz. Aşağıda tedaylı şekilde açıklamaya çalıştım.
 
-## Öncelikle CNN'in nasıl çalıştığını anlatmaya çalışıyım.
+
+## Öncelikle CNN'in nasıl çalıştığını anlamaya çalışalım.
 
 Temel olarak, Cnn, sınıflandırma sorununun çözümü için standart Sinir Ağı kullanır, ancak bilgileri belirlemek ve bazı özellikleri tespit etmek için diğer katmanları kullanır.
+
 
 ## CNN'in ana mantığı
 
